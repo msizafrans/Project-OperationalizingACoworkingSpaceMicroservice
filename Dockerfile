@@ -4,6 +4,16 @@ ENV FLASK_RUN_HOST=0.0.0.0
 
 WORKDIR /src
 
+RUN apk update && \
+    apk add \
+    pcre \
+    pcre-dev \
+    build-base \
+    gcc \
+    linux-headers \
+    openssl \
+    libffi-dev
+
 COPY ./requirements.txt requirements.txt
 
 # Required dependencies for psycopg2 (used for Postgres client)
