@@ -1,12 +1,20 @@
-FROM python:3.10-slim-buster
+FROM public.ecr.aws/docker/library/python:3.9-alpine
 
-USER root
+ENV FLASK_RUN_HOST=0.0.0.0
 
-WORKDIR /src
+WORKDIR /app
 
-COPY ./requirements.txt requirements.txt
+RUN apk update && \
+    apk add \
+    pcre \
+    pcre-dev \
+    build-base \
+    gcc \
+    linux-headers \
+    openssl \
+    libffi-dev
 
-RUN apt update -y && apt install -y build-essential libpq-dev
+COPY requirements.txt .
 
 RUN pip install -r requirements.txt
 
