@@ -1,5 +1,6 @@
-# Use the official Python base image
-FROM python:3.8-slim
+FROM public.ecr.aws/docker/library/python:3.11-alpine
+
+ENV FLASK_RUN_HOST=0.0.0.0
 
 # Set the working directory in the container
 WORKDIR /app
