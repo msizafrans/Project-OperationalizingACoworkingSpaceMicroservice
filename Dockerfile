@@ -1,26 +1,17 @@
-FROM public.ecr.aws/docker/library/python:3.11-alpine
+# Use the official Python base image
+FROM python:3.8-slim
 
-ENV FLASK_RUN_HOST=0.0.0.0
-
+# Set the working directory in the container
 WORKDIR /app
 
-# Required dependencies for psycopg2 (used for Postgres client)
-RUN apk update && \
-    apk add \
-    pcre \
-    pcre-dev \
-    build-base \
-    gcc \
-    linux-headers \
-    openssl \
-    libffi-dev
+# Copy the requirements file to the working directory
+COPY requirements.txt .
 
-COPY ./requirements.txt requirements.txt
+# Install the dependencies
+RUN pip install --no-cache-dir -r requirements.txt
 
-# Installing dependencies during build time in the container itself so that we don't have OS mismatch
-RUN pip install -r requirements.txt
-
+# Copy the rest of the application code to the working directory
 COPY . .
 
-CMD python app.py
-
+# Set the command to run the application
+CMD [ "python", "app.py" ]
