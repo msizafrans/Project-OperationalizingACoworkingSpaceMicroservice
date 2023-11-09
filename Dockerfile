@@ -17,7 +17,7 @@ RUN apk update && \
 
 COPY ./requirements.txt requirements.txt
 
-# Installing dependencies during build time in the container itself so we don't have OS mismatch
+# Installing dependencies during build time in the container itself so that we don't have OS mismatch
 RUN pip install -r requirements.txt
 
 COPY . .
