@@ -1,18 +1,18 @@
-FROM public.ecr.aws/docker/library/python:3.11-alpine
+FROM python:3.10-slim-buster
 
-ENV FLASK_RUN_HOST=0.0.0.0
+USER root
 
-# Set the working directory in the container
-WORKDIR /app
+WORKDIR /src
 
-# Copy the requirements file to the working directory
-COPY requirements.txt .
+COPY requirements.txt requirements.txt
 
-# Install the dependencies
-RUN pip install --no-cache-dir -r requirements.txt
+# Dependencies required for psycopg2 (used for Postgres client)
+RUN apt update -y && apt install -y build-essential libpq-dev
 
-# Copy the rest of the application code to the working directory
+# Dependencies are installed during build time in the container itself so we don't have OS mismatch
+RUN pip install -r requirements.txt
+
 COPY . .
 
-# Set the command to run the application
-CMD [ "python", "app.py" ]
+# Start the Flask application
+CMD  python app.py
