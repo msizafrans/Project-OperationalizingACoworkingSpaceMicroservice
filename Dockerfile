@@ -23,8 +23,6 @@ COPY requirements.txt .
 # Installing dependencies during build time in the container itself so we don't have OS mismatch
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy all the files and directories from the current directory on the host machine to the /app directory inside the container.
 COPY . .
 
-# Start the Flask application
 CMD  python app.py
