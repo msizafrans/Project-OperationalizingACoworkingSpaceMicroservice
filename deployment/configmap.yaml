@@ -4,5 +4,5 @@ metadata:
   name: dbconfigmap
 data:
   DB_PORT: "5432"
-  DB_HOST: "postgresql-postgresql.default.svc.cluster.local"
+  DB_HOST: "postgresql.default.svc.cluster.local"
   DB_USERNAME: "postgres"
