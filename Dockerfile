@@ -1,4 +1,4 @@
-FROM python:3.10-slim-buster
+FROM python:3.9-slim-buster
 
 WORKDIR /src
 
@@ -8,5 +8,4 @@ RUN pip install --upgrade pip && pip install -r requirements.txt
 
 COPY . .
 
-#run the app
 CMD python app.py
