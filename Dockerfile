@@ -8,4 +8,5 @@ RUN pip install --upgrade pip && pip install -r requirements.txt
 
 COPY . .
 
+#run the app
 CMD python app.py
