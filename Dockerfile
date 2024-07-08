@@ -1,3 +1,4 @@
+# Image of Linux Debian 10 Operating System to host the Application
 FROM python:3.9-slim-buster
 
 WORKDIR /src
